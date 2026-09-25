@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const WorkOutCard = ({ workout }) => {
   return (
+    <Link href={`/workouts/${workout.id}`}>
     <article>
       <Image 
       src={workout.image}  
@@ -21,6 +23,7 @@ const WorkOutCard = ({ workout }) => {
         <span>⭐ {workout.rating}</span>
       </div>
     </article>
+    </Link>
   );
 };
 
