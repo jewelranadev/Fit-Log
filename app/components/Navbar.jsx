@@ -1,7 +1,7 @@
 "use client";
 
 import { useWorkout } from "@/context/WorkoutContext";
-
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -17,7 +17,15 @@ const Navbar = () => {
     <nav className="relative border-b border-white/10">
       <div className="container mx-auto flex items-center justify-between px-4 py-5">
         {/* logo */}
-        <Link href="/" className="text-2xl font-black tracking-wider">
+
+        <Link href="/" className="text-2xl font-black tracking-wider flex ">
+          <Image
+            src="/logo.png"
+            alt="FitLog logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+          />
           FIT<span className="text-[#ccff00]">LOG</span>
         </Link>
 
@@ -89,9 +97,7 @@ const Navbar = () => {
                 href="/my-plan"
                 onClick={() => setIsOpen(false)}
                 className={
-                  pathname === "/my-plan"
-                    ? "text-[#ccff00]"
-                    : "text-white/60"
+                  pathname === "/my-plan" ? "text-[#ccff00]" : "text-white/60"
                 }
               >
                 MY PLAN
