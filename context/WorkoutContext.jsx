@@ -7,15 +7,19 @@ const WorkoutContext = createContext();
 export const WorkoutProvider = ({ children }) => {
   const [todayPlan, setTodayPlan] = useState([]);
   const [savedWorkouts, setSavedWorkouts] = useState([]);
+  const [completedWorkouts, setCompletedWorkouts] = useState([]);
 
   return (
     <WorkoutContext.Provider
       value={{
         todayPlan,
         setTodayPlan,
+
         savedWorkouts,
         setSavedWorkouts,
-      
+
+        completedWorkouts,
+        setCompletedWorkouts,
       }}
     >
       {children}
