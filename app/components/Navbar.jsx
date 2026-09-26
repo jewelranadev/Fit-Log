@@ -3,15 +3,19 @@
 import { useWorkout } from "@/context/WorkoutContext";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { todayPlan, savedWorkouts } = useWorkout()
+  const pathname = usePathname();
+
+  const { todayPlan, savedWorkouts } = useWorkout();
+
   return (
     <nav className="relative border-b border-white/10">
-      <div className="flex justify-between items-center px-4 py-5 container mx-auto">
+      <div className="container mx-auto flex items-center justify-between px-4 py-5">
         {/* logo */}
         <Link href="/" className="text-2xl font-black tracking-wider">
           FIT<span className="text-[#ccff00]">LOG</span>
@@ -19,47 +23,77 @@ const Navbar = () => {
 
         {/* Nav */}
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="text-[#ccff00]">
+          <Link
+            href="/"
+            className={
+              pathname === "/"
+                ? "text-[#ccff00]"
+                : "text-white/60 transition hover:text-white"
+            }
+          >
             WORKOUT
           </Link>
+
           <Link
             href="/my-plan"
-            className="text-white/60 transition hover:text-white"
+            className={
+              pathname === "/my-plan"
+                ? "text-[#ccff00]"
+                : "text-white/60 transition hover:text-white"
+            }
           >
-            MYPLAN
+            MY PLAN
           </Link>
         </div>
+
         {/* counter */}
-        <div className="flex items-center gap-2">
+        <div className="hidden items-center gap-2 md:flex">
           <Link
             href="/my-plan"
             className="rounded-full bg-[#ccff00] px-4 py-2 text-sm font-bold text-black"
           >
             PLAN {todayPlan.length}
           </Link>
+
           <Link
             href="/my-plan"
             className="rounded-full border border-white/30 px-4 py-2 text-sm font-bold"
           >
-           SAVED {savedWorkouts.length}
+            SAVED {savedWorkouts.length}
           </Link>
         </div>
 
-        {/* for responsive mobile menu */}
+        {/* mobile menu button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="rounded-lg border border-white/20 px-3 py-2 md:hidden"
         >
           ☰
         </button>
+
+        {/* mobile menu */}
         {isOpen && (
           <div className="absolute left-0 top-full z-50 w-full border-b border-white/10 bg-[#0b0b0b] p-5 md:hidden">
             <div className="flex flex-col gap-5">
-              <Link href="/" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/"
+                onClick={() => setIsOpen(false)}
+                className={
+                  pathname === "/" ? "text-[#ccff00]" : "text-white/60"
+                }
+              >
                 WORKOUT
               </Link>
 
-              <Link href="/my-plan" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/my-plan"
+                onClick={() => setIsOpen(false)}
+                className={
+                  pathname === "/my-plan"
+                    ? "text-[#ccff00]"
+                    : "text-white/60"
+                }
+              >
                 MY PLAN
               </Link>
 
@@ -68,7 +102,7 @@ const Navbar = () => {
                 className="rounded-full bg-[#ccff00] px-4 py-2 text-center font-bold text-black"
                 onClick={() => setIsOpen(false)}
               >
-                PLAN
+                PLAN {todayPlan.length}
               </Link>
 
               <Link
@@ -76,7 +110,7 @@ const Navbar = () => {
                 className="rounded-full border border-white/30 px-4 py-2 text-center font-bold"
                 onClick={() => setIsOpen(false)}
               >
-                SAVED
+                SAVED {savedWorkouts.length}
               </Link>
             </div>
           </div>

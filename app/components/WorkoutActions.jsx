@@ -1,6 +1,7 @@
 "use client";
 
 import { useWorkout } from "@/context/WorkoutContext";
+import { toast } from "react-toastify";
 
 const WorkoutActions = ({ workout }) => {
   const {
@@ -16,14 +17,18 @@ const WorkoutActions = ({ workout }) => {
     );
 
     if (alreadyAdded) {
+      toast.warning("Already added to today's plan");
       return;
     }
 
     if (todayPlan.length >= 5) {
+      toast.warning("Today's plan can have maximum 5 workouts");
       return;
     }
 
     setTodayPlan([...todayPlan, workout]);
+
+    toast.success("Added to today's plan");
   };
 
   const handleSaveForLater = () => {
@@ -32,10 +37,13 @@ const WorkoutActions = ({ workout }) => {
     );
 
     if (alreadySaved) {
+      toast.warning("Already saved");
       return;
     }
 
     setSavedWorkouts([...savedWorkouts, workout]);
+
+    toast.success("Workout saved for later");
   };
 
   return (
