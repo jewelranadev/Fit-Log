@@ -14,7 +14,7 @@ const Navbar = () => {
   const { todayPlan, savedWorkouts } = useWorkout();
 
   return (
-    <nav className="relative border-b border-white/10">
+    <nav className="sticky top-0 z-50 border-b border-white/10">
       <div className="container mx-auto flex items-center justify-between px-4 py-5">
         {/* logo */}
 
