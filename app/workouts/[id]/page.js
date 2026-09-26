@@ -6,6 +6,20 @@ const WorkoutDetails = async ({ params }) => {
 
   const workout = await getWorkoutById(id);
 
+  if (!workout) {
+  return (
+    <main className="container mx-auto px-4 py-16">
+      <h1 className="text-3xl font-bold">
+        Workout not found
+      </h1>
+
+      <p className="mt-3 text-white/60">
+        The workout you are looking for does not exist.
+      </p>
+    </main>
+  );
+}
+
   return (
     <main className="container mx-auto px-4 py-16">
       <div className="grid gap-10 md:grid-cols-2">
