@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -22,10 +23,10 @@ const Hero = () => {
 
           <Link
             href="#library"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#ccff00] px-6 py-3 font-bold uppercase text-black transition hover:scale-105"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#ccff00] px-6 py-3 font-bold uppercase text-black transition-all duration-300 hover:scale-105 hover:bg-[#b8e600]"
           >
-            <span>Browse Workouts</span>
-            <span>→</span>
+            <span>BROWSE WORKOUTS</span>
+            <ArrowRight size={20} strokeWidth={2.5} />
           </Link>
         </div>
 
