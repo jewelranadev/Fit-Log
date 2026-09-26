@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { getWorkoutById } from "@/lib/workouts";
+import WorkoutActions from "@/app/components/WorkoutActions";
+
 
 const WorkoutDetails = async ({ params }) => {
   const { id } = await params;
@@ -7,18 +9,16 @@ const WorkoutDetails = async ({ params }) => {
   const workout = await getWorkoutById(id);
 
   if (!workout) {
-  return (
-    <main className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold">
-        Workout not found
-      </h1>
+    return (
+      <main className="container mx-auto px-4 py-16">
+        <h1 className="text-3xl font-bold">Workout not found</h1>
 
-      <p className="mt-3 text-white/60">
-        The workout you are looking for does not exist.
-      </p>
-    </main>
-  );
-}
+        <p className="mt-3 text-white/60">
+          The workout you are looking for does not exist.
+        </p>
+      </main>
+    );
+  }
 
   return (
     <main className="container mx-auto px-4 py-16">
@@ -82,6 +82,9 @@ const WorkoutDetails = async ({ params }) => {
               ))}
             </ol>
           </div>
+
+          {/* actions  */}
+          <WorkoutActions workout={workout} />
         </div>
       </div>
     </main>

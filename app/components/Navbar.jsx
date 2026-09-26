@@ -1,9 +1,14 @@
 "use client";
+
+import { useWorkout } from "@/context/WorkoutContext";
+
 import Link from "next/link";
 import { useState } from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { todayPlan, savedWorkouts } = useWorkout()
   return (
     <nav className="relative border-b border-white/10">
       <div className="flex justify-between items-center px-4 py-5 container mx-auto">
@@ -28,16 +33,15 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <Link
             href="/my-plan"
-            className="
-          rounded-full bg-[#ccff00] pc-4 py-2 text-sm font-bold text-black"
+            className="rounded-full bg-[#ccff00] px-4 py-2 text-sm font-bold text-black"
           >
-            PLAN
+            PLAN {todayPlan.length}
           </Link>
           <Link
             href="/my-plan"
             className="rounded-full border border-white/30 px-4 py-2 text-sm font-bold"
           >
-            SAVED
+           SAVED {savedWorkouts.length}
           </Link>
         </div>
 
